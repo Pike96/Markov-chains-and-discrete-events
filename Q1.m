@@ -3,7 +3,7 @@ clear;
 Tt = 0;     % arrival time sequence
 Ts = 0;     % time of 1st arrival after s
 i = 0;
-lambda = 20;    % customized lambda constant
+lambda = 2000;    % customized lambda constant
 s = 0;      % time past
 
 % Generate arrival time sequence
@@ -32,6 +32,7 @@ tA = Tt(1);
 tD = inf;
 tb = 0;     % one break
 tbtotal = 0;    % total break time
+tx = 0;     % extra service time to compensate break
 n = 0;      % numbers in queue
 i = 0;
 
@@ -42,7 +43,7 @@ while tA<100
         tA = Tt(i);
         n = n+1;
         if n == 1
-            tD = t+exprnd(1/25);    % Exp distri. with rate 25
+            tD = t+tx+exprnd(1/25);    % Exp distri. with rate 25
         end
     else    % tA > tD
         t = tD;
@@ -55,6 +56,7 @@ while tA<100
                 tbtotal = tbtotal + tb;
                 tbc = tbc + tb;
             end
+            tx = t+tbc-tA;
             tD = inf;
         else
             tD = t+exprnd(1/25);
