@@ -26,6 +26,36 @@ while Ts <= 100
     Tt(i) = Ts;
 end
 
-ta = inf;
-td = inf;
+t = 0;      % current time
+tA = Tt(1);
+tD = inf;
+tb = 0;     % one break
+tbtotal = 0;    % total break time
+n = 0;      % numbers in queue
+i = 0;
 
+while tA<100
+    if tA <= tD
+        t = tA;
+        i = i+1;
+        tA = Tt(i);
+        n = n+1;
+        if n == 1
+            tD = t+exprnd(1/25);
+        end
+    else
+        t = tD;
+        n = n-1;
+        if n == 0
+            tbc = 0;    % accumulated continuous break time
+            while t + tbc < tA
+                tb = 0.3*rand;
+                tbtotal = tbtotal + tb;
+                tbc = tbc + tb;
+            end
+            tD = inf;
+        else
+            tD = t+exprnd(1/25);
+        end
+    end
+end
