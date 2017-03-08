@@ -1,4 +1,4 @@
-function [m1,m2,mp,elow,ehigh]= Q2a_func(p,k)
+function [m1,m2,mp,elow,ehigh]= Q2b_func(p,k)
 
 n1=0;
 n2=0;
@@ -11,8 +11,8 @@ for i=1:k;
     if rand<p   % p2
         n2 = n2+1;
     end
-    if rand<0.5     % x1
-        if rand<0.5     % 11
+    if rand<0.75     % x1
+        if rand<0.75     % 11
             if rand<0.5     % select 1 input
                 if n1>0
                     n1 = n1-1;
@@ -32,7 +32,7 @@ for i=1:k;
             end
         end
     else                % x2
-        if rand<0.5     % 22
+        if rand<0.25     % 22
             if rand<0.5     % select 1 input
                 if n1>0
                     n1 = n1-1;
