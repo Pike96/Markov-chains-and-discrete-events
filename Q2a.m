@@ -1,6 +1,6 @@
 clear;
 
-k=2e4;
+k=2e4;  % number of time slots
 i=0;
 
 for p=0:0.01:1
